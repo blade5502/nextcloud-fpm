@@ -37,7 +37,7 @@ VOLUME /var/www/html
 
 
 RUN curl -fsSL -o nextcloudcloud.tar.bz2 \
-		"https://download.nextcloud.com/server/releases/nextcloud-${NEXTCLOUD_VERSION}.tar.bz2.md5" \
+		"https://download.nextcloud.com/server/releases/nextcloud-${NEXTCLOUD_VERSION}.tar.bz2" \
 	&& curl -fsSL -o nextcloud.tar.bz2.asc \
 		"https://download.nextcloud.com/server/releases/nextcloud-${NEXTCLOUD_VERSION}.tar.bz2.asc" \
 	&& export GNUPGHOME="$(mktemp -d)" \
