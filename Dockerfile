@@ -36,7 +36,7 @@ ENV NEXTCLOUD_VERSION 9.0.50
 VOLUME /var/www/html
 
 
-RUN curl -fsSL -o nextcloudcloud.tar.bz2 \
+RUN curl -fsSL -o nextcloud.tar.bz2 \
 		"https://download.nextcloud.com/server/releases/nextcloud-${NEXTCLOUD_VERSION}.tar.bz2" \
 	&& curl -fsSL -o nextcloud.tar.bz2.asc \
 		"https://download.nextcloud.com/server/releases/nextcloud-${NEXTCLOUD_VERSION}.tar.bz2.asc" \
