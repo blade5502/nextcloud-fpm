@@ -35,11 +35,18 @@ RUN pecl install APCu-4.0.10 redis memcached
 ENV NEXTCLOUD_VERSION 9.0.50
 VOLUME /var/www/html
 
-RUN curl -fsSL -o nextcloud.tar.gz \
-		"https://github.com/nextcloud/server/archive/v${NEXTCLOUD_VERSION}.tar.gz" \
+
+RUN curl -fsSL -o nextcloudcloud.tar.bz2 \
+		"https://download.nextcloud.com/server/releases/nextcloud-${NEXTCLOUD_VERSION}.tar.bz2.md5" \
+	&& curl -fsSL -o nextcloud.tar.bz2.asc \
+		"https://download.nextcloud.com/server/releases/nextcloud-${NEXTCLOUD_VERSION}.tar.bz2.asc" \
 	&& export GNUPGHOME="$(mktemp -d)" \
-	&& tar -xvf nextcloud.tar.gz -C /usr/src/ \
-	&& rm nextcloud.tar.gz
+# gpg key from https://nextcloud.org/nextcloud.asc
+#	&& gpg --keyserver ha.pool.sks-keyservers.net --recv-keys E3036906AD9F30807351FAC32D5D5E97F6978A26 \
+#	&& gpg --batch --verify nextcloud.tar.bz2.asc nextcloud.tar.bz2 \
+	&& rm -r "$GNUPGHOME" nextcloud.tar.bz2.asc \
+	&& tar -xjf nextcloud.tar.bz2 -C /usr/src/ \
+	&& rm nextcloud.tar.bz2
 
 COPY docker-entrypoint.sh /entrypoint.sh
 
