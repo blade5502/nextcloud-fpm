@@ -38,8 +38,8 @@ VOLUME /var/www/html
 RUN curl -fsSL -o nextcloud.tar.gz \
 		"https://github.com/nextcloud/server/archive/v${NEXTCLOUD_VERSION}.tar.gz" \
 	&& export GNUPGHOME="$(mktemp -d)" \
-	&& tar -xvf owncloud.tar.gz -C /usr/src/ \
-	&& rm owncloud.tar.gz
+	&& tar -xvf nextcloud.tar.gz -C /usr/src/ \
+	&& rm nextcloud.tar.gz
 
 COPY docker-entrypoint.sh /entrypoint.sh
 
