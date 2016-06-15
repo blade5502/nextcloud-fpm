@@ -30,7 +30,7 @@ RUN { \
 
 # PECL extensions
 RUN pecl install APCu-4.0.10 redis memcached
-RUN docker-php-ext-enable apcu redis memcached
+#RUN docker-php-ext-enable apcu redis memcached
 
 ENV NEXTCLOUD_VERSION 9.0.50
 VOLUME /var/www/html
